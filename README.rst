@@ -1,6 +1,23 @@
 ratelimit |build| |maintainability|
 ===================================
 
+This is a fork of Ratelimit[https://github.com/tomasbasham/ratelimit] by Tomasbasham which adds Async support. now you can also apply the ratelimit
+decorators to async functions. The below example should work with this fork.
+
+.. code:: python
+
+    from ratelimit import limits, sleep_and_retry
+
+    import requests
+
+    FIFTEEN_MINUTES = 900
+
+    @sleep_and_retry
+    @limits(calls=15, period=FIFTEEN_MINUTES)
+    async def processTask(task):
+        await task()
+
+
 APIs are a very common way to interact with web services. As the need to
 consume data grows, so does the number of API calls necessary to remain up to
 date with data sources. However many API providers constrain developers from
@@ -16,26 +33,6 @@ limits.
 Installation
 ------------
 
-PyPi
-~~~~
-
-Add this line to your application's requirements.txt:
-
-.. code:: python
-
-    ratelimit
-
-And then execute:
-
-.. code:: bash
-
-    $ pip install -r requirements.txt
-
-Or install it yourself:
-
-.. code:: bash
-
-    $ pip install ratelimit
 
 GitHub
 ~~~~~~
@@ -44,7 +41,7 @@ Installing the latest version from Github:
 
 .. code:: bash
 
-    $ git clone https://github.com/tomasbasham/ratelimit
+    $ git clone https://github.com/DivyanshuBagga/ratelimit.git
     $ cd ratelimit
     $ python setup.py install
 
